@@ -1,0 +1,25 @@
+{% extends "pha/base.html" %}
+{% block body %}
+        <div id="page-wrapper">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h1 class="page-header">HAZOP Studys</h1>
+                </div>
+                <!-- /.col-lg-12 -->
+            </div>
+            <!-- /.row -->
+            {% if pha_study_list %}
+                {% for study in pha_study_list %}
+                <div class="panel panel-default">
+                    </a><div class="panel-heading"><a href="{% url 'pha:phaStudy' study.id %}">{{study.name}}</a></div>
+                     <div class="panel-body">
+                            <div>nodes: 8</div>
+                            <div>Actions 12/12</div>
+                    </div>
+                </div>
+                {% endfor %}
+            {% endif %}
+        </div>
+              
+            
+{% endblock %}

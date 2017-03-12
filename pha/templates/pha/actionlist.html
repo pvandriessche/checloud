@@ -1,0 +1,8 @@
+{% if pha_action_list %}
+   
+        {% for phaAction in pha_action_list %}
+            {{ phaAction.phaAction_text }}
+        {% endfor %}
+{% else %}
+ no actions
+{% endif %}

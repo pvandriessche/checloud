@@ -1,0 +1,101 @@
+{% extends "pha/base.html" %}
+{% block body %}
+        <div id="page-wrapper">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h1 class="page-header">HAZOP Studys</h1>
+                </div>
+                <!-- /.col-lg-12 -->
+            </div>
+            <!-- /.row -->
+            {% if pha_study_list %}
+                {% for study in pha_study_list %}
+                <div class="panel panel-default">
+                    <a href="{% url phaItemDetail %}"></a><div class="panel-heading">{{study.name}}</div></a>
+                     <div class="panel-body">
+                            <div>nodes: 8</div>
+                            <div>Actions 12/12</div>
+                    </div>
+                </div>
+                {% endfor %}
+            {% endif %}
+        </div>
+              
+            
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html>
+    <head>
+      <script src="https://use.fontawesome.com/e3ab86ca8e.js"></script>
+      <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+      <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+      {% load static %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'pha/style.css' %}" />
+    </head>
+<body>
+<div class="container-fluid">
+<div id="top_menu">
+    <i class="fa fa-home"></i> study actionlist
+</div>
+<div class="navigation">
+    {% if directory %}
+    {% for node in directory %}
+        {{ node.name }} <br/>
+    {% endfor %}
+    {% else %}
+    oh ow
+    {% endif %}
+</div>
+<div id="form">
+    
+</div>
+{% if pha_item_list %}
+   
+        {% for phaItem in pha_item_list %}
+        <div class="phaitem">
+        <div class="row">
+        <div class="number col-md-1">1.1</div>  
+        <div class="guideword col-md-3">{{phaItem.guideWord}}</div>
+        <div class="cause col-md-3"><a href="/pha/{{ phaItem.id }}/">{{ phaItem.phaItem_cause }}</a></div>
+        <div class="consequence col-md-3">{{ phaItem.phaItem_consequence }}</div>
+        </div>
+        <div class="actions">
+            {% if phaItem.phaItem_action %}
+                <ul>
+                    {% for phaAction in phaItem.phaItem_action.all %}
+                     <li>{{ phaAction }}</li>
+                     {% endfor %}
+                </ul>
+            {% else %}
+                No actions available.
+            {% endif %}
+        </div>
+        </div>
+    {% endfor %}
+<!--   </div>-->
+{% else %}
+    <p>No polls are available.</p>
+{% endif %}
+</div>
+</body>
+</html> 
